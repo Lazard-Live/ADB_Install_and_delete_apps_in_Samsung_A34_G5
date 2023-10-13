@@ -10,6 +10,7 @@ appListDel = {
     'com.microsoft.office.officehubrow', #MS Office 365
     'com.samsung.sree', #Samsung Global Goals
     'com.google.android.apps.youtube.music', #Youtube music
+
     'com.facebook.katana',#Facebook
     'com.facebook.appmanager', #Facebook
     'com.facebook.services', #Facebook
@@ -71,9 +72,15 @@ def installApp():
         print(f'│ Идет установка {app}')
         subprocess.run(commandInstall,stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
+# Отключение режима разработчика (эксперементальная)
+def devOff():
+    commandDevOff = 'adb shell settings put global development_settings_enabled 0'
+    commandDebagOff = 'adb shell settings put global adb_enabled 0'
+    subprocess.run(commandDevOff, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(commandDebagOff, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 # ----------------------
 
-print('v.1 (12.10.2023)')
+print('v.1.1 (13.10.2023)')
 print()
 print('Скрипт предназначен для автоматического удаления и установки приложений на телефон Samsung А34 G5 через ADB')
 print('Root не требуется, перед началом активируйте режим разработчика и отладку через USB!')
@@ -87,6 +94,9 @@ print('│ Начало установки приложений')
 installApp()
 print('├────────────────────────────────────────────')
 print('│ Установка завершена')
+print('├────────────────────────────────────────────')
+devOff()
+print('│ Режим разработчика отключен')
 print('└────────────────────────────────────────────')
 input("Нажмите Enter для выхода...")
 exit()
