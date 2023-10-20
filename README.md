@@ -7,5 +7,5 @@
 
 Просто запустить скрипт с помощью Python:
 ```
-    python ./start ADB Samsung A34 G5.py
+    python C:/(путь)/start ADB Samsung A34 G5.py
 ```
